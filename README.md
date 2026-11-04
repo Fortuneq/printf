@@ -1,70 +1,70 @@
 ### sprintf and sscanf
 
-- int sscanf(const char *str, const char *format, ...) - считывает форматированный ввод из строки.
-- int sprintf(char *str, const char *format, ...) - отправляет форматированный вывод в строку, на которую указывает str.
+- int sscanf(const char *str, const char *format, ...) - reads formatted input from a string.
+- int sprintf(char *str, const char *format, ...) - sends formatted output to the string pointed to by str.
 
-где:
-- str − Это С-строка, которую функция обрабатывает в качестве источника для извлечения данных;
-- format −  это С-строка, содержащая один или несколько следующих элементов: пробельный символ, непробельный символ и спецификаторы формата. Спецификатор формата для печатающих функций следует прототипу: %[флаги][ширина][.точность][длина]спецификатор. Спецификатор формата для сканирующих функций следует прототипу: %[*][ширина][длина]спецификатор.
+where:
+- str − the C string the function processes as the source for retrieving data;
+- format − a C string containing one or more of the following items: a whitespace character, a non-whitespace character and format specifiers. A format specifier for printing functions follows the prototype: %[flags][width][.precision][length]specifier. A format specifier for scanning functions follows the prototype: %[*][width][length]specifier.
 
-### sprintf and sscanf Спецификаторы
+### sprintf and sscanf Specifiers
 
-| № | Спецификатор | Результат sprintf | Результат sscanf |
+| No. | Specifier | sprintf output | sscanf output |
 | --- | --- | --- | --- |
-| 1 | c | Символ | Символ |
-| 2 | d | Знаковое десятичное целое число | Знаковое десятичное целое число |
-| 3 | i | Знаковое десятичное целое число | Знаковое целое число (может быть десятичным, восьмеричным или шестнадцатеричным) |
-| 4 | e | Научная нотация (мантисса/экспонента) с использованием символа e (вывод чисел должен совпадать с точностью до e-6) | Десятичное число с плавающей точкой или научная нотация (мантисса/экспонента) |
-| 5 | E | Научная нотация (мантисса/экспонента) с использованием символа Е | Десятичное число с плавающей точкой или научная нотация (мантисса/экспонента) |
-| 6 | f | Десятичное число с плавающей точкой | Десятичное число с плавающей точкой или научная нотация (мантисса/экспонента) |
-| 7 | g | Использует кратчайший из представлений десятичного числа | Десятичное число с плавающей точкой или научная нотация (мантисса/экспонента) |
-| 8 | G | Использует кратчайший из представлений десятичного числа | Десятичное число с плавающей точкой или научная нотация (мантисса/экспонента) |
-| 9 | o | Беззнаковое восьмеричное число | Беззнаковое восьмеричное число |
-| 10 | s | Строка символов | Строка символов |
-| 11 | u | Беззнаковое десятичное целое число | Беззнаковое десятичное целое число |
-| 12 | x | Беззнаковое шестнадцатеричное целое число | Беззнаковое шестнадцатеричное целое число (любые буквы) |
-| 13 | X | Беззнаковое шестнадцатеричное целое число (заглавные буквы) | Беззнаковое шестнадцатеричное целое число (любые буквы) |
-| 14 | p | Адрес указателя | Адрес указателя |
-| 15 | n | Количество символов, напечатанных до появления %n | Количество символов, считанных до появления %n |
-| 16 | % | Символ % | Символ % |
+| 1 | c | Character | Character |
+| 2 | d | Signed decimal integer | Signed decimal integer |
+| 3 | i | Signed decimal integer | Signed integer (may be decimal, octal or hexadecimal) |
+| 4 | e | Scientific notation (mantissa/exponent) using e (output must match with precision up to e-6) | Decimal floating-point number or scientific notation (mantissa/exponent) |
+| 5 | E | Scientific notation (mantissa/exponent) using E | Decimal floating-point number or scientific notation (mantissa/exponent) |
+| 6 | f | Decimal floating-point number | Decimal floating-point number or scientific notation (mantissa/exponent) |
+| 7 | g | Uses the shortest representation of the decimal number | Decimal floating-point number or scientific notation (mantissa/exponent) |
+| 8 | G | Uses the shortest representation of the decimal number | Decimal floating-point number or scientific notation (mantissa/exponent) |
+| 9 | o | Unsigned octal | Unsigned octal |
+| 10 | s | String of characters | String of characters |
+| 11 | u | Unsigned decimal integer | Unsigned decimal integer |
+| 12 | x | Unsigned hexadecimal integer | Unsigned hexadecimal integer (any letters) |
+| 13 | X | Unsigned hexadecimal integer (uppercase letters) | Unsigned hexadecimal integer (any letters) |
+| 14 | p | Pointer address | Pointer address |
+| 15 | n | Number of characters printed before %n | Number of characters read before %n |
+| 16 | % | The % character | The % character |
 
-### sprintf Флаги
+### sprintf Flags
 
-| № | Флаг | Описание |
+| No. | Flag | Description |
 | --- | --- | --- |
-| 1 | - | Выравнивание по левому краю в пределах заданной ширины поля; Выравнивание по правому краю используется по умолчанию (см. подспецификатор ширины). |
-| 2 | + | Заставляет явно указывать знак плюс или минус (+ или -) даже для положительных чисел. По умолчанию только отрицательным числам предшествует знак "-". |
-| 3 | (пробел) | Если знак не будет выведен, перед значением вставляется пробел. |
-| 4 | # | При использовании со спецификаторами o, x или X перед числом вставляется 0, 0x или 0X соответственно (для значений, отличных от нуля). При использовании с e, E и f "заставляет" записанный вывод содержать десятичную точку, даже если за ней не последует никаких цифр. По умолчанию, если не следует никаких цифр, десятичная точка не записывается. При использовании с g или G результат такой же, как и с e или E, но конечные нули не удаляются. |
-| 5 | 0 | Заполняет число слева нулями (0) вместо пробелов, где указан спецификатор ширины (см. подспецификатор ширины). |
+| 1 | - | Left-justify within the given field width; right justification is the default (see the width sub-specifier). |
+| 2 | + | Forces the result to be preceded by a plus or minus sign (+ or -) even for positive numbers. By default only negative numbers are preceded by a "-" sign. |
+| 3 | (space) | If no sign is going to be written, a blank space is inserted before the value. |
+| 4 | # | Used with o, x or X specifiers, the value is preceded by 0, 0x or 0X respectively (for values other than zero). Used with e, E and f, it forces the written output to contain a decimal point even if no digits follow. By default, if no digits follow, no decimal point is written. Used with g or G, the result is the same as with e or E, but trailing zeros are not removed. |
+| 5 | 0 | Left-pads the number with zeros (0) instead of spaces where padding is specified (see the width sub-specifier). |
 
-### sprintf and sscanf Ширина
+### sprintf and sscanf Width
 
-| № | Ширина | Описание |
+| No. | Width | Description |
 | --- | --- | --- |
-| 1	| (число) | Минимальное количество печатаемых символов. Если выводимое значение короче этого числа, результат дополняется пробелами. Значение не усекается, даже если результат больше. |
-| 2 | * | В sprintf знак * значит, что ширина указывается не в строке формата, а в качестве дополнительного аргумента целочисленного значения, предшествующего аргументу, который необходимо отформатировать. В sscanf знак *, помещенный после % и перед спецификатором формата, считывает данные указанного типа, но подавляет их присваивание. |
+| 1	| (number) | Minimum number of characters to be printed. If the value to be printed is shorter than this number, the result is padded with blank spaces. The value is not truncated even if the result is larger. |
+| 2 | * | In sprintf, * means the width is not specified in the format string but as an additional integer argument preceding the argument that has to be formatted. In sscanf, a * placed after % and before the format specifier reads data of the specified type but suppresses its assignment. |
 
-### sprintf Точность
+### sprintf Precision
 
-| № | .точность | Описание |
+| No. | .precision | Description |
 | --- | --- | --- |
-| 1	| .число | Для целочисленных спецификаторов (d, i, o, u, x, X) − точность определяет минимальное количество записываемых цифр. Если записываемое значение короче этого числа, результат дополняется ведущими нулями. Значение не усекается, даже если результат длиннее. Точность 0 означает, что для значения 0 не записывается ни одного символа. Для спецификаторов e, E и f − это количество цифр, которые должны быть напечатаны после десятичной точки. Для спецификаторов g и G − это максимальное количество значащих цифр, которые должны быть напечатаны. Для s − это максимальное количество печатаемых символов. По умолчанию все символы печатаются до тех пор, пока не встретится терминирующий нуль. Для типа с − никак не влияет. Если точность не указана для спецификаторов e, E, f, g и G, то по умолчанию ее значение равно 6. Если точность не указана для остальных спецификаторов, то по умолчанию ее значение равно 1. Если число не указано (нет явного значения точности), то по умолчанию - 0. |
-| 2	| .* | Точность указывается не в строке формата, а в качестве дополнительного аргумента целочисленного значения, предшествующего аргументу, который должен быть отформатирован. |
+| 1	| .number | For integer specifiers (d, i, o, u, x, X), precision specifies the minimum number of digits to be written. If the value to be written is shorter than this number, the result is padded with leading zeros. The value is not truncated even if the result is longer. A precision of 0 means that no character is written for the value 0. For e, E and f specifiers it is the number of digits to be printed after the decimal point. For g and G specifiers it is the maximum number of significant digits to be printed. For s it is the maximum number of characters to be printed; by default all characters are printed until the terminating null character is encountered. For c it has no effect. If no precision is specified for e, E, f, g and G, the default is 6. If no precision is specified for the other specifiers, the default is 1. If the period is given without an explicit value, the default is 0. |
+| 2	| .* | The precision is not specified in the format string but as an additional integer argument preceding the argument that has to be formatted. |
 
-### sprintf and sscanf Длина
+### sprintf and sscanf Length
 
-| № | Длина | Описание |
+| No. | Length | Description |
 | --- | --- | --- |
-| 1 | h | Аргумент интерпретируется как короткое int или короткое int без знака (применяется только к целочисленным спецификаторам: i, d, o, u, x и X). |
-| 2 | l | Аргумент интерпретируется как длинное int или длинное int без знака для целочисленных спецификаторов (i, d, o, u, x и X) и как широкий символ или строка широких символов для спецификаторов c и s. |
-| 3 | L | Аргумент интерпретируется как длинный double (применяется только к спецификаторам с плавающей точкой − e, E, f, g и G). |
+| 1 | h | The argument is interpreted as a short int or unsigned short int (only applies to integer specifiers: i, d, o, u, x and X). |
+| 2 | l | The argument is interpreted as a long int or unsigned long int for integer specifiers (i, d, o, u, x and X), and as a wide character or wide character string for specifiers c and s. |
+| 3 | L | The argument is interpreted as a long double (only applies to floating-point specifiers − e, E, f, g and G). |
 
-### Специальные функции обработки строк (вдохновленные классом String в языке C#)
+### Special string processing functions (inspired by the String class in C#)
 
-| № | Функция | Описание |
+| No. | Function | Description |
 | ------ | ------ | ------ |
-| 1 | void *to_upper(const char *str) | Возвращает копию строки (str), преобразованной в верхний регистр. В случае какой-либо ошибки следует вернуть значение NULL |
-| 2 | void *to_lower(const char *str) | Возвращает копию строки (str), преобразованной в нижний регистр. В случае какой-либо ошибки следует вернуть значение NULL |
-| 3 | void *insert(const char *src, const char *str, size_t start_index) | Возвращает новую строку, в которой указанная строка (str) вставлена в указанную позицию (start_index) в данной строке (src). В случае какой-либо ошибки следует вернуть значение NULL |
-| 4 | void *trim(const char *src, const char *trim_chars) | Возвращает новую строку, в которой удаляются все начальные и конечные вхождения набора заданных символов (trim_chars) из данной строки (src). В случае какой-либо ошибки следует вернуть значение NULL |
+| 1 | void *to_upper(const char *str) | Returns a copy of string (str) converted to uppercase. In case of any error, return NULL |
+| 2 | void *to_lower(const char *str) | Returns a copy of string (str) converted to lowercase. In case of any error, return NULL |
+| 3 | void *insert(const char *src, const char *str, size_t start_index) | Returns a new string in which a specified string (str) is inserted at a specified index position (start_index) in the given string (src). In case of any error, return NULL |
+| 4 | void *trim(const char *src, const char *trim_chars) | Returns a new string in which all leading and trailing occurrences of a set of specified characters (trim_chars) from the given string (src) are removed. In case of any error, return NULL |
